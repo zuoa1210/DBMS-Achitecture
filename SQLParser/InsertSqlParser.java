@@ -16,7 +16,7 @@ public class InsertSqlParser extends BaseSqlParser{
 	}
 
 	public String getParsedSql() {
-		String retval=super.getParsedSql();
+		String retval = super.getParsedSql();
 		retval=retval+")";
 		return retval;
 	}

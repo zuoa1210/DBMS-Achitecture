@@ -8,7 +8,10 @@ public class SqlParserFactory {
 	public static List<List<String>> generateParser(String sql) {
 		BaseSqlParser tmp = null;
 		
-		if(contains(sql, "(select)(.+)(from)(.+)")) {
+		if(contains(sql, "(insert)(.+)(select)(.+)")) {
+			System.out.println("insert select");
+			tmp = new InsertSelectSqlParser(sql);
+		} else if(contains(sql, "(select)(.+)(from)(.+)")) {
 			System.out.println("select");
 			tmp = new SelectSqlParser(sql);
 		} else if(contains(sql, "(delete from)(.+)")) {
@@ -32,8 +35,12 @@ public class SqlParserFactory {
 		} else if(contains(sql, "(drop index)(.+)")) {
 			System.out.println("drop index");
 			tmp = new DropSqlParser(sql);
+		} else if(contains(sql, "quit(.+)")) {
+			System.out.println("Program exit...");
+			return null;
 		} else {
-			System.out.println("Input errors, please re-enter.");
+			System.out.println("Input SQL errors, please re-enter...");
+			return null;
 		}
 		return tmp.splitSqlToSegment();
 	}

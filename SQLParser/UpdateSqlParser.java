@@ -12,7 +12,7 @@ public class UpdateSqlParser extends BaseSqlParser{
 		// TODO Auto-generated method stub
 		segments.add(new SqlSegment("(update)(.+)(set)","[,]"));
 		segments.add(new SqlSegment("(set)(.+?)( where | ENDOFSQL)","[,]"));
-		segments.add(new SqlSegment("(where)(.+)(ENDOFSQL)","(and|or)"));
+		segments.add(new SqlSegment("(where)(.+)(ENDOFSQL)","[ ]+"));
 	}
 	
 }

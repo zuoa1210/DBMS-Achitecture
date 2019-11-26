@@ -9,7 +9,7 @@ public class DeleteSqlParser extends BaseSqlParser{
 	@Override
 	protected void initializeSegments() {
 		segments.add(new SqlSegment("(delete from)(.+)( where | ENDOFSQL)", "[,]"));
-		segments.add(new SqlSegment("(where)(.+)( ENDOFSQL)","[ ]"));
+		segments.add(new SqlSegment("(where)(.+)( ENDOFSQL)","[ ]+"));
 	}
 	
 }

@@ -25,16 +25,18 @@ public class Test {
 			sql = "" + sql + " ENDOFSQL";
 			
 			List<List<String>> parameter_list=new ArrayList<List<String>>(); 
-			
-			if(sql.equals("quit"))
+
+			if(sql.equals("quit ENDOFSQL"))
 			{
 				temp = false;
 			}
 			else
-			{
+			{	
 				parameter_list = SqlParserFactory.generateParser(sql);
 				
-				System.out.println("Finish executing SQL Parser.");
+				if(parameter_list == null) continue;
+				
+				System.out.println("Finish executing SQL Parser...");
 				
 				for(int i = 0;i < parameter_list.size();i++)
 				{
