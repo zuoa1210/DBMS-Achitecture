@@ -61,7 +61,16 @@ public class SqlSegment {
 		start = start.trim();
 		
 		ls.add(start);
-		String[] arr = sb.toString().split("[|]");
+		String s = sb.toString();
+
+		if(s.indexOf("primary key(") != -1) {
+			s = s.substring(0, s.indexOf("primary key(") - 1);
+		} 
+		if(s.indexOf("foreign key(") != -1) {
+			s = s.substring(0, s.indexOf("foreign key(") - 1);
+		} 
+
+		String[] arr = s.split("[|]");
 		int arrLength = arr.length;
 		for(int i = 0; i < arrLength; i++) {
 			ls.add(arr[i]);
