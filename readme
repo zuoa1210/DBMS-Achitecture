@@ -1,0 +1,68 @@
+
+notice:
+do not use space unless you have to 
+not able to use nickname for tables
+for create tables and attribute do not use '+-*/=><' in name, use lower case
+for sql input use "" to identify a string or char not ''
+in where,  in () only 'and' is allowed
+for order use the form attr || attr, desc/asc
+
+
+
+=|!=|>|>=|<|<=|\\+|-|\\*|/
+
+shortcoming:
+in where, only one layer of () is allowed, 
+having part: () only contains attribute
+for each join condition, only 2 tables involve. only support the left hand side of operator is attribute and so is the right side
+
+
+
+create table rel(attr1 int,attr2 string,attr3 int,primary key(attr1), foreign key(attr3) references d(a));
+drop table rel;
+insert into i_1000 values (1000,1000);//values + " "
+update i_1000 set i_1000@id2=3 where i_1000@id1 = 500;	//space after where condition
+DELETE FROM i_1000 where i_1000@id1 > 500;	//space caution
+create index ind on i_1000 (i_1000@id1);
+drop index ind on i_1000;
+select * from i_1000;
+select i_1000@id1 from i_1000;
+select * from i_1000 where i_1000@id1>900;
+select * from i_1000 where i_1000@id1>900 and i_1000@id2>980 or i_1000@id1<10;
+select * from i_1000,1_1000 where i_1000@id1=1_1000@id1;
+select i_1000@id1 from i_1000,1_1000,i_10000 where i_1000@id1=1_1000@id1 and 1_1000@id2=i_10000@id1;
+select i_1000@id1 from i_1000 order by i_1000@id1,asc;
+select i_1000@id1 from i_1000 order by i_1000@id1,desc;
+select i_1000@id1 from i_1000,1_1000 where i_1000@id1=1_1000@id1 and i_1000@id1<100 and i_1000@id1<10 or i_1000@id1>90 order by i_1000@id1,desc;
+select 1_1000@id2,max(1_1000@id1) from 1_1000 group by 1_1000@id2;
+select 1_1000@id2,max(1_1000@id1) from 1_1000 group by 1_1000@id2;
+select i_1000@id1,max(i_1000@id2) from i_1000 group by i_1000@id1 order by i_1000@id1,desc;
+select i_1000@id1,max(i_1000@id2) from i_1000 group by i_1000@id1 order by max(i_1000@id2),desc;
+select i_1000@id1,max(i_1000@id2) from i_1000 group by i_1000@id1 having max(i_1000@id2)<10;
+select i_1000@id1,max(i_1000@id2) from i_1000 group by i_1000@id1 having i_1000@id1<10;
+select i_1000@id1,max(i_1000@id2) from i_1000 group by i_1000@id1 having i_1000@id1<10 order by i_1000@id1,desc;
+select i_1000@id1,max(i_1000@id2) from i_1000 group by i_1000@id1 having i_1000@id1<10 order by max(i_1000@id2),desc;
+
+
+
+
+
+
+
+create table department(department@id string, department@name string, primary key(department@id));
+create table employee(employee@id string, employee@department_id string, employee@age int, primary key(employee@id), foreign key(employee@department_id) references department(department@id));
+
+insert into department values (1,math);
+insert into department values (2,computer_science);
+insert into department values (3,art);
+insert into department values (4,EE);
+
+
+
+insert into employee values (1,1,10);
+insert into employee values (2,1,20);
+insert into employee values (3,2,20);
+insert into employee values (4,2,30);
+insert into employee values (5,3,30);
+insert into employee values (6,4,20);
+select employee@department_id,avg(employee@age) from employee group by employee@department_id;

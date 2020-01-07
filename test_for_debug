@@ -1,0 +1,11 @@
+import java.util.*;
+import java.io.*;
+
+public class test_for_debug
+{
+    public static void main(String[] args)
+    {
+        int i = 0;
+        System.print.out(i.getClass().getName());
+    }
+}
